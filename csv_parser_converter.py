@@ -4,7 +4,7 @@ import datetime
 
 def format_date(year,month,day):
   date = datetime.date(year, month, day).strftime("%Y%m%d")
-  print(date)
+  # print(date)
   return date
 
 # station_id = input('What id?')
@@ -16,6 +16,8 @@ day = 1
 header = True
 
 csvReader = csv.reader(open('file.csv', newline=''), delimiter=',', quotechar='|')
+textFileName = "results.txt"
+fileHandle = open(textFileName, "w")
 
 for row in csvReader:
   for expectedYield in row:
@@ -26,15 +28,15 @@ for row in csvReader:
       for column in range(0,9):
         string_date = format_date(year,month,day)
         day = day + 1
-        print("PercentMeanData.insert({")
-        print("id: '"+station_id+"',")
-        print("percentMean: {")
-        print("date: '"+string_date+"',")
-        print("crop: '"+crop+"',")
-        print("variety: '"+variety+"',")
-        print("expectedYield: '"+expectedYield+"'")        
-        print("}")        
-        print("});")
+        fileHandle.write("PercentMeanData.insert({ \n")
+        fileHandle.write("\tid: '"+station_id+"', \n")
+        fileHandle.write("\tpercentMean: { \n")
+        fileHandle.write("\t\tdate: '"+string_date+"', \n")
+        fileHandle.write("\t\tcrop: '"+crop+"', \n")
+        fileHandle.write("\t\tvariety: '"+variety+"', \n")
+        fileHandle.write("\t\texpectedYield: '"+expectedYield+"' \n")        
+        fileHandle.write("\t} \n")        
+        fileHandle.write("}); \n")
     else:
       for column in range(0,7):
         if(day == 32 and (month == 1 or month == 3 or month == 5 or month == 7 or month == 8 or month == 10)):
@@ -48,13 +50,14 @@ for row in csvReader:
           day = 1
         string_date = format_date(year,month,day)
         day = day + 1
-        print("PercentMeanData.insert({")
-        print("id: '"+station_id+"',")
-        print("percentMean: {")
-        print("date: '"+string_date+"',")
-        print("crop: '"+crop+"',")
-        print("variety: '"+variety+"',")
-        print("expectedYield: '"+expectedYield+"'")        
-        print("}")        
-        print("});")
+        fileHandle.write("PercentMeanData.insert({ \n")
+        fileHandle.write("\tid: '"+station_id+"', \n")
+        fileHandle.write("\tpercentMean: { \n")
+        fileHandle.write("\t\tdate: '"+string_date+"', \n")
+        fileHandle.write("\t\tcrop: '"+crop+"', \n")
+        fileHandle.write("\t\tvariety: '"+variety+"', \n")
+        fileHandle.write("\t\texpectedYield: '"+expectedYield+"' \n")        
+        fileHandle.write("\t} \n")        
+        fileHandle.write("}); \n")
     
+fileHandle.close()
