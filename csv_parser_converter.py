@@ -30,7 +30,7 @@ for row in csvReader:
         print("id: '"+station_id+"',")
         print("percentMean: {")
         print("date: '"+string_date+"',")
-        prints("crop: '"+crop+"',")
+        print("crop: '"+crop+"',")
         print("variety: '"+variety+"',")
         print("expectedYield: '"+expectedYield+"'")        
         print("}")        
