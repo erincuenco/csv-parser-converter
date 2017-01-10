@@ -10,7 +10,7 @@ def format_date(year,month,day):
 # station_id = input('What id?')
 crop = input('What crop?')
 variety = input('What variety?')
-year = 2016
+year = 2017
 month = 1
 day = 1
 header = True
@@ -20,6 +20,10 @@ textFileName = "results.txt"
 fileHandle = open(textFileName, "w")
 
 for row in csvReader:
+  year = 2017
+  month = 1
+  day = 1
+  header = True
   for expectedYield in row:
     if header:
       station_id = expectedYield
@@ -45,7 +49,7 @@ for row in csvReader:
         elif(day == 31 and (month == 4 or month == 6 or month == 9 or month == 11)):
           month = month + 1
           day = 1
-        elif(day == 30 and month == 2):
+        elif(day == 29 and month == 2):
           month = month + 1
           day = 1
         string_date = format_date(year,month,day)
